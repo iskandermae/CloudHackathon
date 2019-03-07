@@ -1,0 +1,5 @@
+git init
+git remote add origin https://github.com/iskandermae/CloudHackathon.git
+
+create project - https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code
+> dotnet new console                // creates project and do restore
