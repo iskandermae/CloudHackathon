@@ -34,7 +34,19 @@ namespace hackathon.Controllers
         [HttpPost]
         public CurValueResponse Post(CurValueRequest curValue)
         {
-            CurValueResponse res = new CurValueResponse() {CurVal = new double[] {55.0, 66.5}}; 
+            CurValueResponse res = new CurValueResponse(); 
+            int count = curValue.Accint.Length;
+            res.CurVal = new double [count];
+            double pct = 1.0; 
+            for (int i=0; i<count; i++){
+                if (curValue.Usehaircut[i]){                    
+                    pct = curValue.Mipct[i]!=0 ? 100/curValue.Mipct[i] : 0;
+                }
+                else {
+                    pct = curValue.Mipct[i] / 100;
+                }
+                res.CurVal[i] = Math.Round((curValue.Curvalqc[i]+curValue.Accint[i])*pct,curValue.Roundto[i]); 
+            }
             return res;
         }
         
