@@ -32,9 +32,9 @@ namespace hackathon.Controllers
         // POST api/values
       //  [Route("")]
         [HttpPost]
-        public CurValue Post( CurValue curValue)
+        public CurValueResponse Post(CurValueRequest curValue)
         {
-            CurValue res = new CurValue{CurVal = 55}; 
+            CurValueResponse res = new CurValueResponse() {CurVal = new double[] {55.0, 66.5}}; 
             return res;
         }
         
