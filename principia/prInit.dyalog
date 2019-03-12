@@ -1,3 +1,7 @@
  res←prInit arg
- '/principia/principia_ap'⎕CMD''
- res←⊂'loaded'
+  res←⊂'loaded'
+ :Trap
+   '/principia/principia_ap'⎕CMD''
+ :Else
+   res←⊂'error'
+ :EndTrap
