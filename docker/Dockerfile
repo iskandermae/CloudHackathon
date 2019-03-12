@@ -1,11 +1,12 @@
-FROM microsoft/dotnet:2.1-sdk
-WORKDIR /app
+FROM dyalog/dyalog:17.1-dbg
 
-# copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+RUN apt-get update && apt-get install -y git && \
+    apt-get clean && rm -Rf /var/lib/apt/lists/*
 
-# copy and build everything else
-COPY .. ./
-RUN dotnet publish -c Release -o bin_release
-ENTRYPOINT ["dotnet", "bin_release/hackathon.dll"]
+RUN git clone https://github.com/Dyalog/JSONServer /JSONServer
+
+RUN mkdir /app
+ADD code/* /app/
+
+EXPOSE 8080
+ADD run /
